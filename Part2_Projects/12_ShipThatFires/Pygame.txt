@@ -3,4 +3,70 @@
 
   - Handles tasks like drawing images to the screen
 
-# 
+# Install Pygame
+  - python -m pip install pygame 
+
+* May get error when installing
+  - The error is SDL.h file not found — pygame needs SDL2 (a system-level graphics library) installed on your Mac before it can compile. Fix it with Homebrew:
+
+  - brew install sdl2 sdl2_image sdl2_mixer sdl2_ttf
+
+* Homebrew is essentially a package manager for Mac system-level dependencies that pip can't handle — you'll find yourself using it fairly often for things like this.
+
+# Creating a Pygame Window and Responding to User Input
+  - refer to alien_invasion.py
+
+* Pygame module contains functionality needed to make the game.
+
+* sys module provides tools to exit the game when the player quits.
+
+* Define dimensions of game window(width, height). 
+  - self.screen = surface where game element can be displayed.
+
+  - Each element in the game, like an alien or a ship, is its own surface.
+
+  - Surface returned by "display.set_mode()" reps the entire  window.
+
+  - When we activate the game loop, the surface will be redrawn on every pass through the loop, so it can be updated with any changes triggered by user input.
+
+  - EX: self.screen = pygame.display.set_mode((1200, 800))
+
+* Game is controlled by the "run_game()" method.  
+  - Method contains a while loop that runs continually.
+
+  - While loop contains and event loop and code that manages screen updates.
+
+* Event Loop = listens for events, actions user performs while playing the game like pressing a key, or moving the mouse.
+
+  - Use "pygame.event.get()" to access list of events Pygame detects.
+
+  - EX: "pygame.QUIT" event occurs when player clicks the window's close button. We then call sys.exit() to quit the game.
+
+* "pygame.display.flip()" tells Python to make the most recently drawn screen visible.
+  - Draws an empty screen on each pass through the while loop, and erases the old screen so only the new screen is visible.
+
+  - When we move the game elements around, "pygame.display.flip()" continually updates the display to show the new positions of the game elements, and hides the old ones.
+
+  - This creates the illusion of smooth movement.
+
+* At the end of the file, we create an instance of the "AlienInvasion" game and call "run_game()".
+  - Place "run_game()" in an if block that only runs if file is called directly.
+
+
+# Controlling the Frame Rate
+
+* Games should ideally run at the same speed, or frame rate.
+
+* We can do this by making a clock, and ensure the click ticks once on each pass through the main loop.
+  - Anytime the loop processes faster than the rate we define, Pygame will calculate the correct amount of time to pause so the game runs at a consistent rate.
+
+  - Define in the "__init__()" method.
+
+  - "self.clock = pygame.time.Clock()"
+
+  - Make clock tick at the end of the while loop in run_game(). Using 60 means we want the loop to run exactly 60 times per second.
+    - "self.clock.tick(60)"
+
+* Pygame treats all game elements as rectangles. Easy to detect collisions.
+
+* 
