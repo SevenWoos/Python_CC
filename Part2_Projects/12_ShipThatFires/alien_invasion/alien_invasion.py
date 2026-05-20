@@ -27,7 +27,7 @@ class AlienInvasion:
         """Start the main loop for the game."""
         while True:
           self._check_events()
-          self.update_screen()
+          self._update_screen()
           self.clock.tick(60)
 
     def _check_events(self):
@@ -37,7 +37,7 @@ class AlienInvasion:
         if event.type == pygame.QUIT:
             sys.exit()
     
-    def update_screen(self):
+    def _update_screen(self):
       """Update images on the screen, and flip to the new screen."""
       # Redraw the screen during each pass through the loop.
       self.screen.fill(self.settings.bg_color)
