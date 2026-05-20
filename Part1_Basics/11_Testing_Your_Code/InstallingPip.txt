@@ -1,0 +1,29 @@
+# Test your Python code with pytest.
+
+# pytest = library of a collection of tools  to help write Python tests.
+  - 3rd party library we will have to install.
+
+# Third_party package = package developed OUTSIDE the core Python language. 
+  - Some popular 3rd party packages are adopted into the standard library
+
+  - Some are kept out, so they can be developed independently
+
+# pip = tool used to insatll 3rd-party packages.
+  - This part tells Python to run the module "pip"
+    - "python-m pip"
+
+  - Tells pip to update a package already installed.
+    - "install -- upgrade"
+
+  - Last part specifies which 3rd-party pacakge to update.
+
+  - EX: python -m pip install --upgrade pip
+
+# Install pytest now that we have pip.
+  - Following code may error out, This is expected behavior — the --user flag is incompatible with virtual environments. Just drop it:
+    - EX: python -m pip install --user pytest
+  
+  - Do this. Since inside a venv, pip already installs into the isolated venv directory, so --user is unnecessary and not allowed.:
+    - EX: pip install pytest
+
+# 

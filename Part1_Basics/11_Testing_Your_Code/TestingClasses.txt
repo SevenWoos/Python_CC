@@ -1,0 +1,23 @@
+# Similar to testing a function, since much of the work involves testing the behavior of the methods in the class.
+
+# EX: testing our "AnonymousSurvey" class in "survey.py"
+
+# Decorator = directive placed just before a function definition. Python applies this directive to the function before it runs, to alter how the function code behaves.
+
+# Fixture = helps set up a test env.
+  - Create with a decorator @pytest.Fixture
+
+  - EX: Use a fixture to create a single survey instance that can be used in both test functions in "test_survey.py"
+
+  - @pytest.fixture
+    def language_survey():
+      """A survey that will be available to all test function."""
+      question = "What language did you first learn to speak?"
+      language_survey = AnonymousSurvey(question)
+    return language_survey
+
+
+# Make sure to pass in the parameter to the test functions.
+  - The parameter in a test function MATCHES the name of the function with the @pytest.fixture decorator.
+
+# 

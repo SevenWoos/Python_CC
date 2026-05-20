@@ -1,0 +1,16 @@
+# Save data from a user prompt.
+
+# Refer to "greet_user.py"
+from pathlib import Path
+import json
+
+path = Path('username.json')
+if path.exists():
+  contents = path.read_text()
+  username = json.loads(contents)
+  print(f"Welcome back, {username}!")
+else:
+  username = input("What is your name? ")
+  contents = json.dumps(username)
+  path.write_text(contents)
+  print(f"We'll remember you when you come backm {username}!")

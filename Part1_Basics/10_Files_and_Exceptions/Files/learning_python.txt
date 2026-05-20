@@ -1,0 +1,2 @@
+I learned how to read a file on Python.
+I learned that we need to tell Python the exact path of the text file we want to read in.

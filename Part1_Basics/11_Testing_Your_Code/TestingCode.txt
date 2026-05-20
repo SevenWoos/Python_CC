@@ -1,0 +1,35 @@
+# Test your Python code with pytest.
+
+# pytest = library of a collection of tools  to help write Python tests.
+
+# Let us test the "name_function.py" code.
+  - Make a program "name.py" that uses the function.
+
+# Our test file for this is:
+  - "test_name_function.py"
+
+  - Name of test file must START with "test_".
+
+  - This is so any functions that start with "test_" will be DISCOVERED by Python and will be run as part of a testing process.
+
+  - You never call the function yourself, pytest finds and runs it for you!
+
+  - Running the test file DIRECTLY in terminal WON'T get any output.
+
+  - Need pytest to RUN!
+
+  - Navigate to new terminal, and then to folder with the test file, and run "pytest"
+
+  - SINGLE dot at the end of the output tells us a single case was ran.
+
+  - A large project can have MULTIPLE dots for multiple tests.
+
+# Unit Tests = way to automate testing that verifies ONE specific aspect of a function's behavior is correct.
+
+# Test Case = collection of unit tests that together prove function behaves correctly.
+
+# A test case with "FULL COVERAGE" has a range of unit tests that covers all possible ways a function is used.
+
+# Assertion = claim about a condition.
+
+# 

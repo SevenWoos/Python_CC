@@ -1,0 +1,37 @@
+* In Object Oriented Programming, you write CLASSES that represent real-world objects and situations.
+
+* You create OBJECTS based on these classes.
+
+* A class defines the general behavior a whole category of objects can have. It is a set of instructions on how to make individual instances.
+
+* Making an object/instance from a class is called INSTANTIATION.
+
+* Class names are always capitalized
+  - EX: class Dog
+
+* __init__() method = special method Python runs whenever we create a new instance.
+
+* Creating an instance
+  - EX: my_dog = Dog('Willie', 6)
+
+* Calling methods.
+  - my_dog.sit()
+  - my_dog.roll_over()
+
+* Inhertiance = when a class is a specialized version of a class that inerits the attributes and methods of the parent class.
+
+*  This new child class cna inherit all attributes and methods of the parent class, but is also free to define new attributes and methods of its own.
+  - EX: ElectricCar class inherits from Car class.
+
+* When you create a child class, the parent class must be part of the CURRENT file and appear BEFORE the child class in the file.
+
+* super() method = special function that allows you to cal a method from the parent class.
+  - EX: super().__init__(make, model, year)
+    - Tells Python to call the __init__() method from Car.
+
+    - Gives ElectricCar instance all the attributes defined in that method.
+
+* If you class is becoming increasingly complex due to an increasing number of attributes and methods, we can break the larger class into smaller classes using composition.
+  - EX: Break battery components into a Battery class.
+
+* 

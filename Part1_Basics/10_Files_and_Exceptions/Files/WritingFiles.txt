@@ -1,0 +1,14 @@
+# One way to save data is to write it to a file. When we write text to a file, it will still be available after we close the terminal.
+
+# Import "from pathlib import Path"
+  - Run "path = Path('programming.txt')
+  - Run 'path.write_text('I love programming.')
+
+# write_text() method takes a single arg(string we want to write to the file). It CLOSES the file after, to avoid missing or corrupted data.
+  - EX: We wrote to a file called 'programming.txt'
+
+# Python can only write STRINGS to a text file. To store numerical data in a text file, we need to convert the data to a string using str().
+
+# If you use "write_text()" on a file that already EXISTS, Python will OVERWRITE that text file.
+
+# 

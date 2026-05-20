@@ -1,0 +1,13 @@
+# Python lets you store classes in modules and then import them as needed to your main program.
+
+* Include a docstring for each module created.
+
+* EX: car.py is our class.
+  - run "from car import Car" in our "my_car.py" file.
+
+* You can store as many classes as you need ina single module.
+  - EX: We can store Battery and ElectricCar class in Car class as well.
+
+* We can make an "my_electric_car.py" file and import the ElectricCar class.
+
+* 

@@ -1,0 +1,31 @@
+* When users close a program, most of the time you'll want to save that data entered using the "json" module.
+
+# json = module that allows you to convert simple Python data structures into JSON-formatted strings, and then load the data from that file the next time the program runs.
+
+# import json
+
+# json.dumps() takes one arg(data that should be converted to JSON format). Function returns a string we can write to a data file.
+
+# EX: refer to "number_writer.py". "numbers.json" file is created.
+  from pathlib import Path
+  import json
+
+  numbers = [2, 3, 5, 7, 11, 13]
+
+  path = Path('numbers.json')
+  contents = json.dump(numbers)
+  path.write_text(contents)
+
+# EX: refer to "number_reader.py". Read in file with read_text() and json.loads() to pass the contents into the file.
+
+  from pathlib import Path
+  import json
+
+  path = Path('numbers.json')
+  contents = path.read_text()
+  numbers = json.loads(contents)
+
+# Refactoring = improve code by breaking it into a series of functions with specific jobs. Makes our code cleaner, easier to understand, and easier to extend.
+  - EX: refer to "remember_me_refactored.py"
+
+# 

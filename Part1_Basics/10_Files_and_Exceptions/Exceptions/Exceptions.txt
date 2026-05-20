@@ -1,0 +1,13 @@
+# Exceptions = special objects that manage errors that arise during a program's execution.
+
+# Python is UNSURE of what to do during an error, so when we write code to handle an exception, the program will continue running.
+
+# Exceptions are handled with try-except blocks. Advantage is that we prevent users from having to see a traceback, and we let the program continue running.
+
+# Run "pass" if we want the except block to do nothing whenw e encounter an exception.
+
+# Code that might cause an ERROR goes inside the "try" block.
+
+# The "except" block tells Python what to do when a ceratin exception occurs.
+
+# 

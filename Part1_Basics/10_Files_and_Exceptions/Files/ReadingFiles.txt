@@ -1,0 +1,21 @@
+* Reading from a file is useful for data analysis applications.
+
+* Steps to read a file on Python:
+  - Create a file like "pi_digits.txt" containing '3.141592653589793238462643383278'
+
+  - Import "pathlib import Path"
+
+  - Run the 2 lines:
+    - path = Path('pi_digits.txt')
+    - contents = Path.read_text()
+    - print(contents)
+
+  - Only difference between this output and the original txt file, is the extra blank line at the end of the output. This is due to read_text() returning an empty string when it reaches the end of the file.
+
+  - We can use rstrip()
+
+* Need to tell Python the path(exact location of a file or folder on a system).
+
+* We can use the "splitlines()" method to turn a long string into a set of lines, and then use a for loop to examine each line from a file, one at a time.
+
+* 

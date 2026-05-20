@@ -1,0 +1,6 @@
+# Pygame = collection of Python modules that manages graphics, animation, and sound.
+  - Makes it easy to build games.
+
+  - Handles tasks like drawing images to the screen
+
+# 
