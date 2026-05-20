@@ -1,6 +1,7 @@
 import sys
 
 import pygame
+from charmander import Charmander
 
 class BlueSky:
   """Make a Pygame window with a blue background"""
@@ -12,6 +13,8 @@ class BlueSky:
     self.clock = pygame.time.Clock()
     self.screen = pygame.display.set_mode((1200, 800))
     pygame.display.set_caption("Blue Sky")
+
+    self.charmander = Charmander(self)
 
     self.bg_color = (135, 206, 235)
 
@@ -30,6 +33,7 @@ class BlueSky:
   def _update_screen(self):
     """Update images on the screen, and flip to the new screen."""
     self.screen.fill(self.bg_color)
+    self.charmander.blitme()
     pygame.display.flip()
 
 if __name__ == '__main__':
