@@ -9,7 +9,9 @@ class Charmander:
     self.screen_rect = bs_game.screen.get_rect()
 
     # Load the ship image and get its rect.
-    self.image = pygame.image.load('charmander.png')
+
+    # convert_alpha() preserves the transparency in the PNG so the background shows through, meaning it'll always match no matter what color your screen is.
+    self.image = pygame.image.load('charmander.png').convert_alpha()
     self.image = pygame.transform.scale(self.image, (100, 100))  # (width, height)
 
     self.rect = self.image.get_rect()
