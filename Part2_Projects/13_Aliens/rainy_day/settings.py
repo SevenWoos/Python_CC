@@ -9,4 +9,5 @@ class Settings:
     self.bg_color = (169, 169, 180)
     
     # Raindrop Settings
+    self.raindrop_speed = 3.0
     

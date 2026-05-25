@@ -1,4 +1,5 @@
 import pygame
+from random import randint
 from pygame.sprite import Sprite
 
 class Raindrop(Sprite):
@@ -8,6 +9,7 @@ class Raindrop(Sprite):
     """Initialize the raindrop and set its starting position."""
     super().__init__()
     self.screen = rd_game.screen
+    self.settings = rd_game.settings
     
     # Load the raindrop image and get its rect.
     self.image = pygame.image.load('images/raindrop.png').convert_alpha()
@@ -18,5 +20,13 @@ class Raindrop(Sprite):
     self.rect.x = self.rect.width
     self.rect.y = self.rect.height
     
-    # Store the raindrop's exact horizontal position.
-    self.x = float(self.rect.x)
+    # Store the raindrop's exact vertical position.
+    self.y = float(self.rect.y)
+    
+    # Random speed per raindrop.
+    self.speed = randint(1, 5)
+
+  def update(self):
+    """Move the raindrop down the screen."""
+    self.y += self.speed
+    self.rect.y = self.y

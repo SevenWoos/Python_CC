@@ -27,6 +27,7 @@ class RainyDay:
     """Start the main loop for the game."""
     while True:
       self._check_events()
+      self._update_raindrops()
       self._update_screen()
       self.clock.tick(60)
       
@@ -51,7 +52,8 @@ class RainyDay:
     new_raindrop.x = x_position + randint(-10, 10)
     new_raindrop.rect.x = new_raindrop.x
     # Random y offset
-    new_raindrop.rect.y = y_position + randint(-10, 10)
+    new_raindrop.rect.y = y_position + randint(0, self.settings.screen_height)
+    new_raindrop.y = float(new_raindrop.rect.y)
     self.raindrops.add(new_raindrop)
     
   def _create_raindrops(self):
@@ -68,6 +70,13 @@ class RainyDay:
       
       current_x = raindrop_width
       current_y += 2 * raindrop_height
+      
+  def _update_raindrops(self):
+    """Update position of raindrops and remove the ones that have fallen off screen."""
+    self.raindrops.update()
+    for raindrop in self.raindrops.copy():
+      if raindrop.rect.top >= self.settings.screen_height:
+        self.raindrops.remove(raindrop)
       
   def _update_screen(self):
     """Update images on the screen, and flip to the new screen."""
