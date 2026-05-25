@@ -1,6 +1,7 @@
 import sys
 
 import pygame
+from random import randint
 
 from settings import Settings
 from raindrop import Raindrop
@@ -46,9 +47,11 @@ class RainyDay:
   def _create_raindrop(self, x_position, y_position):
     """Create a raindrop and place it on the row."""
     new_raindrop = Raindrop(self)
-    new_raindrop.x = x_position
+    # Random x offset
+    new_raindrop.x = x_position + randint(-10, 10)
     new_raindrop.rect.x = new_raindrop.x
-    new_raindrop.rect.y = y_position
+    # Random y offset
+    new_raindrop.rect.y = y_position + randint(-10, 10)
     self.raindrops.add(new_raindrop)
     
   def _create_raindrops(self):
