@@ -71,12 +71,17 @@ class RainyDay:
       current_x = raindrop_width
       current_y += 2 * raindrop_height
       
+      
   def _update_raindrops(self):
     """Update position of raindrops and remove the ones that have fallen off screen."""
     self.raindrops.update()
     for raindrop in self.raindrops.copy():
       if raindrop.rect.top >= self.settings.screen_height:
         self.raindrops.remove(raindrop)
+    
+    # Replenish raindrops when they've all fallen off
+    if not self.raindrops:
+      self._create_raindrops()
       
   def _update_screen(self):
     """Update images on the screen, and flip to the new screen."""
