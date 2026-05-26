@@ -1,0 +1,107 @@
+import sys
+
+import pygame
+
+from settings import Settings
+from raindrop import Raindrop
+
+class RainyDay:
+  """Overall class to mage game assets and behavior."""
+  
+  def __init__(self):
+    """Initialize the game, and create game resources."""
+    pygame.init()
+    
+    self.clock = pygame.time.Clock()
+    self.settings = Settings()
+    
+    self.screen = pygame.display.set_mode(((self.settings.screen_width, self.settings.screen_height)))
+    pygame.display.set_caption("Rainy Day")
+    
+    self.raindrops = pygame.sprite.Group()
+    
+    self._create_raindrops()
+    
+  def run_game(self):
+    """Start the main loop for the game."""
+    while True:
+      self._check_events()
+      self._update_raindrops()
+      self._update_screen()
+      self.clock.tick(60)
+      
+  def _check_events(self):
+    """Respond to keypresses and mouse events."""
+    for event in pygame.event.get():
+      if event.type == pygame.QUIT:
+        sys.exit()
+        
+      elif event.type == pygame.KEYDOWN:
+        self._check_keydown_events(event)
+  
+  def _check_keydown_events(self, event):
+    """Respond to keypresses."""
+    if event.key == pygame.K_q:
+      sys.exit()
+      
+  def _create_raindrop(self, x_position, y_position):
+    """Create a raindrop and place it on the row."""
+    new_raindrop = Raindrop(self)
+    new_raindrop.x = x_position
+    new_raindrop.rect.x = x_position
+    new_raindrop.y = y_position
+    new_raindrop.rect.y = y_position
+    self.raindrops.add(new_raindrop)
+    
+  def _create_raindrops(self):
+    """Create a scatter of steady raindrops."""
+    # Create a raindrop and keep adding raindrops until there is no more space in the row.
+    raindrop = Raindrop(self)
+    raindrop_width, raindrop_height = raindrop.rect.size
+    
+    current_x, current_y = raindrop_width, raindrop_height
+    while current_y < (self.settings.screen_height - 2 * raindrop_height):
+      while current_x < (self.settings.screen_width - 2 * raindrop_width):
+        self._create_raindrop(current_x, current_y)
+        current_x += 2 * raindrop_width
+        
+      current_x = raindrop_width
+      current_y += 4 * raindrop_height
+    
+  def _add_raindrop_row(self):
+    """Add a new row of raindrops at the top of the screen."""
+    raindrop = Raindrop(self)
+    raindrop_width = raindrop.rect.width
+    
+    current_x = raindrop_width
+    while current_x  < (self.settings.screen_width - 2 * raindrop_width):
+      self._create_raindrop(current_x, 0)
+      current_x += 2 * raindrop_width
+  
+  def _update_raindrops(self):
+    """Update position of raindrops in the sprite group and remove the ones thaat are in the row that have fallen off screen."""
+    self.raindrops.update()
+    
+    # Flag to add only one row per frame.
+    row_added = False
+    for raindrop in self.raindrops.copy():
+      if raindrop.rect.top >= self.settings.screen_height:
+        self.raindrops.remove(raindrop)
+        # Replenish with new row of raindrops.
+        if not row_added:
+          self._add_raindrop_row()
+          row_added = True
+
+  def _update_screen(self):
+    """Update images on the screen, and flip to the new screen."""
+    self.screen.fill(self.settings.bg_color)
+    
+    self.raindrops.draw(self.screen)
+    
+    # Make the most recently drawn screen available.
+    pygame.display.flip()
+    
+
+if __name__ == '__main__':
+  rd = RainyDay()
+  rd.run_game()
