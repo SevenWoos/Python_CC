@@ -1,4 +1,4 @@
-class GameState:
+class GameStats:
   """Track statistics for Alien Invasion.
   """
   
