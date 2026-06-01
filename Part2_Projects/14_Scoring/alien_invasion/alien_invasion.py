@@ -4,6 +4,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -24,6 +25,9 @@ class AlienInvasion:
     self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
     self.screen_rect = self.screen.get_rect()
     pygame.display.set_caption("Alien Invasion")
+    
+    # Make the Play button.
+    self.play_button = Button(self, "Play")
     
     # Create an instance to store game statistics.
     self.stats = GameStats(self)
@@ -196,6 +200,10 @@ class AlienInvasion:
       
     # To make the aliens appear, we need to call draw() for the group of aliens. This method automatically draws each alien in the group at the position specified by its rect attribute.
     self.aliens.draw(self.screen)
+    
+    # Draw the play button if the game is inactive.
+    if not self.game_active:
+      self.play_button.draw_button()
     
     # Make the most recently drawn screen available.
     pygame.display.flip()
