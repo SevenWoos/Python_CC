@@ -99,6 +99,8 @@ class AlienInvasion:
       self.ship.moving_right = True
     elif event.key == pygame.K_SPACE:
       self._fire_bullet()
+    elif event.key == pygame.K_p:
+      self._start_game()
   
   def _check_events_keyup(self, event):
     if event.key == pygame.K_LEFT:
