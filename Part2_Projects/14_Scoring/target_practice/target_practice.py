@@ -3,6 +3,7 @@ from time import sleep
 import pygame
 
 from settings import Settings
+from game_stats import GameStats
 from block import Block
 from enemy_block import EnemyBlock
 from bullet import Bullet
@@ -15,7 +16,7 @@ class TargetPractice:
     pygame.init()
     
     # Start Target Practice in an inactive state.
-    self.game_active = False
+    self.game_active = True
     
     self.clock = pygame.time.Clock()
     self.settings = Settings()
@@ -23,6 +24,9 @@ class TargetPractice:
     self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
     self.screen_rect = self.screen.get_rect()
     pygame.display.set_caption("Target Practice")
+    
+    # Create an instance to store game statistics.
+    self.stats = GameStats(self)
     
     # Create an instance of the Block class.
     self.block = Block(self)
