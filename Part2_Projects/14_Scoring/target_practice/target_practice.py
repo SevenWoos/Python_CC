@@ -71,7 +71,16 @@ class TargetPractice:
   def _check_play_button(self, mouse_pos):
     """Start a new game when the player clicks Play."""
     if self.play_button.rect.collidepoint(mouse_pos):
+      # Reset the game statistics.
+      self.stats.reset_stats()
       self.game_active = True
+      
+      # Get rid of any remaining bullets and enemy blocks.
+      self.bullets.empty()
+      self.enemy_block_group.empty()
+      
+      # Create a new enemy block and add it to the enemy_block_group.
+      self._create_enemy_block()
   
   def _check_keydown_events(self, event):
     """Respond to keypresses."""
