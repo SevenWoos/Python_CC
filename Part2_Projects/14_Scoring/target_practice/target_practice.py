@@ -72,19 +72,23 @@ class TargetPractice:
     """Start a new game when the player clicks Play."""
     button_clicked = self.play_button.rect.collidepoint(mouse_pos)
     if button_clicked and not self.game_active:
-      # Reset the game statistics.
-      self.stats.reset_stats()
-      self.game_active = True
+      self._start_game()
       
-      # Get rid of any remaining bullets and enemy blocks.
-      self.bullets.empty()
-      self.enemy_block_group.empty()
-      
-      # Create a new enemy block and add it to the enemy_block_group.
-      self._create_enemy_block()
-      
-      # Hide the mouse cursor.
-      pygame.mouse.set_visible(False)
+  def _start_game(self):
+    """Start a new game."""
+    # Reset the game statistics.
+    self.stats.reset_stats()
+    self.game_active = True
+    
+    # Get rid of any remaining bullets and enemy blocks.
+    self.bullets.empty()
+    self.enemy_block_group.empty()
+    
+    # Create a new enemy block and add it to the enemy_block_group.
+    self._create_enemy_block()
+    
+    # Hide the mouse cursor.
+    pygame.mouse.set_visible(False)
   
   def _check_keydown_events(self, event):
     """Respond to keypresses."""
