@@ -25,4 +25,4 @@ class Settings:
     self.enemy_block_height = 50
     self.enemy_block_color = (220, 50, 50)
     self.enemy_block_speed = 2.0
-    
+    self.enemy_block_direction = -1

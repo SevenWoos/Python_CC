@@ -34,6 +34,7 @@ class TargetPractice:
     while True:
       self._check_events()
       self.block.update()
+      self._update_enemy_block()
       self._update_bullets()
       self._update_screen()
       self.clock.tick(60)
@@ -78,7 +79,17 @@ class TargetPractice:
     for bullet in self.bullets.copy():
       if bullet.rect.left >= self.screen_rect.right:
         self.bullets.remove(bullet)
-  
+        
+  def _update_enemy_block(self):
+    """Check if the enemy block has hit an edge, and update its position."""
+    if self.enemy_block.check_edges():
+      self._change_enemy_block_direction()
+    self.enemy_block.update()
+    
+  def _change_enemy_block_direction(self):
+    """Change the enemy block's direction."""
+    self.settings.enemy_block_direction *= -1
+      
   def _update_screen(self):
     """Update images on the screen, and flip to the new screen."""
     self.screen.fill(self.settings.bg_color)

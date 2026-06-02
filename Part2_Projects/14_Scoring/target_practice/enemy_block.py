@@ -17,6 +17,15 @@ class EnemyBlock:
     # Store the enemy block's vertical position.
     self.y = float(self.rect.y)
     
+  def update(self):
+    """Move the enemy block up and down."""
+    self.y += self.settings.enemy_block_speed * self.settings.enemy_block_direction
+    self.rect.y = self.y
+    
+  def check_edges(self):
+    """Return true if the enemy block is at the top or bottom edge of the screen."""
+    return (self.rect.top <= 0) or (self.rect.bottom >= self.screen_rect.bottom)
+    
   def draw_enemy_block(self):
     """Draw the enemy block to the screen."""
     pygame.draw.rect(self.screen, self.color, self.rect)
