@@ -14,7 +14,7 @@ class Settings:
     self.block_speed = 2.5
     
     # Bullet Settings.
-    self.bullet_speed = 2.0
+    self.bullet_speed = 3.0
     self.bullet_width = 15
     self.bullet_height = 3
     self.bullet_color = (255, 103, 0)
@@ -24,5 +24,5 @@ class Settings:
     self.enemy_block_width = 50
     self.enemy_block_height = 50
     self.enemy_block_color = (220, 50, 50)
-    self.enemy_block_speed = 2.0
+    self.enemy_block_speed = 2.5
     self.enemy_block_direction = -1
