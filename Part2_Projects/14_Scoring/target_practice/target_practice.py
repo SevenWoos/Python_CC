@@ -143,6 +143,8 @@ class TargetPractice:
       self.bullets.empty()
       sleep(1)
       self._create_enemy_block()
+      # Increase the speed settings when we destroy the enemy block and level up.
+      self.settings.increase_speed()
   
   def _create_enemy_block(self):
     """Create a new enemy block and add it to the enemy_block_group."""
