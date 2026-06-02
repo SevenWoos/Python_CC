@@ -29,6 +29,25 @@ class TargetPractice:
     # Make the Play button.
     self.play_button = Button(self, "Play")
     
+    # Difficulty Buttons.
+    self.easy_button = Button(self, "Easy", (106, 190, 80))
+    self.medium_button = Button(self, "Medium", (255, 200, 0))
+    self.hard_button = Button(self, "Hard", (220, 50, 50))
+    
+    # Position buttons below play button, side by side.
+    self.easy_button.rect.top = self.play_button.rect.bottom + 20
+    self.medium_button.rect.top = self.play_button.rect.bottom + 20
+    self.hard_button.rect.top = self.play_button.rect.bottom + 20
+
+    self.easy_button.rect.centerx = self.screen_rect.centerx - 220
+    self.medium_button.rect.centerx = self.screen_rect.centerx
+    self.hard_button.rect.centerx = self.screen_rect.centerx + 220
+
+    # Re-center the text on each button after repositioning.
+    self.easy_button.msg_image_rect.center = self.easy_button.rect.center
+    self.medium_button.msg_image_rect.center = self.medium_button.rect.center
+    self.hard_button.msg_image_rect.center = self.hard_button.rect.center
+    
     # Create an instance to store game statistics.
     self.stats = GameStats(self)
     
@@ -67,6 +86,7 @@ class TargetPractice:
       elif event.type == pygame.MOUSEBUTTONDOWN:
         mouse_pos = pygame.mouse.get_pos()
         self._check_play_button(mouse_pos)
+        self._check_difficulty_buttons(mouse_pos)
   
   def _check_play_button(self, mouse_pos):
     """Start a new game when the player clicks Play."""
@@ -74,6 +94,25 @@ class TargetPractice:
     if button_clicked and not self.game_active:
       # Reset the game settings.
       self.settings.initialize_dynamic_settings()
+      self._start_game()
+  
+  def _check_difficulty_buttons(self, mouse_pos):
+    """Set the game's difficulty level based on which button is clicked."""
+    easy_clicked = self.easy_button.rect.collidepoint(mouse_pos)
+    medium_clicked = self.medium_button.rect.collidepoint(mouse_pos)
+    hard_clicked = self.hard_button.rect.collidepoint(mouse_pos)
+    
+    if easy_clicked and not self.game_active:
+      self.settings.speedup_scale = 1.0
+      self.settings.increase_speed()
+      self._start_game()
+    elif medium_clicked and not self.game_active:
+      self.settings.speedup_scale = 2.0
+      self.settings.increase_speed()
+      self._start_game()
+    elif hard_clicked and not self.game_active:
+      self.settings.speedup_scale = 3.0
+      self.settings.increase_speed ()
       self._start_game()
       
   def _start_game(self):
@@ -181,6 +220,9 @@ class TargetPractice:
     # Draw the play button if the game is inactive.
     if not self.game_active:
       self.play_button.draw_button()
+      self.easy_button.draw_button()
+      self.medium_button.draw_button()
+      self.hard_button.draw_button()
       pygame.mouse.set_visible(True)
     
     # Make the most recently drawn screen visible.
