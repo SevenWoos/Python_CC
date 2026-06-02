@@ -126,6 +126,10 @@ class TargetPractice:
     for bullet in self.bullets.copy():
       if bullet.rect.left >= self.screen_rect.right:
         self.bullets.remove(bullet)
+        self.stats.misses += 1
+        if self.stats.misses >= self.stats.max_misses:
+          self.game_active = False
+          pygame.mouse.set_visible(True)
     
     # Check for any bullets that have hit the enemy block.
     self._check_bullet_enemy_block_collisions()
