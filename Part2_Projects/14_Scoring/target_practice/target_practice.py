@@ -3,6 +3,7 @@ import pygame
 
 from settings import Settings
 from block import Block
+from bullet import Bullet
 
 class TargetPractice:
   """Overall class to manage game assets and behavior."""
@@ -20,12 +21,16 @@ class TargetPractice:
     
     # Create an instance of the Block class.
     self.block = Block(self)
+    
+    # Group that holds the bullets.
+    self.bullets = pygame.sprite.Group()
   
   def run_game(self):
     """Start the main loop for the game."""
     while True:
       self._check_events()
       self.block.update()
+      self._update_bullets()
       self._update_screen()
       self.clock.tick(60)
       
@@ -46,16 +51,37 @@ class TargetPractice:
       self.block.moving_up = True
     elif event.key == pygame.K_DOWN:
       self.block.moving_down = True
+    elif event.key == pygame.K_SPACE:
+      self._fire_bullet()
   
   def _check_keyup_events(self, event):
     if event.key == pygame.K_UP:
       self.block.moving_up = False
     elif event.key == pygame.K_DOWN:
       self.block.moving_down = False
+      
+  def _fire_bullet(self):
+    """Create a new bullet and add it to the bullets group."""
+    if len(self.bullets) < self.settings.bullets_allowed:
+      new_bullet = Bullet(self)
+      self.bullets.add(new_bullet)
+  
+  def _update_bullets(self):
+    """Update position of bullets and get rid of old bullets"""
+    # Apply update() method on all bullets to update their positions.
+    self.bullets.update()
+    # Get rid of bullets that have disappeared.
+    for bullet in self.bullets.copy():
+      if bullet.rect.left >= self.screen_rect.right:
+        self.bullets.remove(bullet)
   
   def _update_screen(self):
     """Update images on the screen, and flip to the new screen."""
     self.screen.fill(self.settings.bg_color)
+    
+    # Draw the bullets.
+    for bullet in self.bullets.sprites():
+      bullet.draw_bullet()
     
     # Redraw the block at its current location.
     self.block.draw_block()
