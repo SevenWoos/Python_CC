@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 import pygame
 
 from settings import Settings
@@ -94,6 +95,7 @@ class TargetPractice:
     if not self.enemy_block_group:
       # Destroy existing bullets and create a new enemy block.
       self.bullets.empty()
+      sleep(1)
       self._create_enemy_block()
   
   def _create_enemy_block(self):
