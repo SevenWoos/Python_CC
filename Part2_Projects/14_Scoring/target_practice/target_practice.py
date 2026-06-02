@@ -28,6 +28,10 @@ class TargetPractice:
     
     # Group that holds the bullets.
     self.bullets = pygame.sprite.Group()
+    
+    # Create a group to hold the enemy block.
+    self.enemy_block_group = pygame.sprite.Group()
+    self.enemy_block_group.add(self.enemy_block)
   
   def run_game(self):
     """Start the main loop for the game."""
@@ -79,6 +83,23 @@ class TargetPractice:
     for bullet in self.bullets.copy():
       if bullet.rect.left >= self.screen_rect.right:
         self.bullets.remove(bullet)
+    
+    # Check for any bullets that have hit the enemy block.
+    self._check_bullet_enemy_block_collisions()
+    
+  def _check_bullet_enemy_block_collisions(self):
+    """Respond to bullet and enemy block collisions."""
+    collisions = pygame.sprite.groupcollide(self.bullets, self.enemy_block_group, True, True)
+    # Respawn the enemy block if it is hit.
+    if not self.enemy_block_group:
+      # Destroy existing bullets and create a new enemy block.
+      self.bullets.empty()
+      self._create_enemy_block()
+  
+  def _create_enemy_block(self):
+    """Create a new enemy block and add it to the enemy_block_group."""
+    self.enemy_block = EnemyBlock(self)
+    self.enemy_block_group.add(self.enemy_block)
         
   def _update_enemy_block(self):
     """Check if the enemy block has hit an edge, and update its position."""
@@ -101,8 +122,9 @@ class TargetPractice:
     # Redraw the block at its current location.
     self.block.draw_block()
     
-    # Redraw the enemy block at its current location.
-    self.enemy_block.draw_enemy_block()
+    # Redraw the enemy block at its current location ONLy if it is still in the enemy_block_group.
+    if self.enemy_block in self.enemy_block_group:
+      self.enemy_block.draw_enemy_block()
     
     # Make the most recently drawn screen visible.
     pygame.display.flip()
