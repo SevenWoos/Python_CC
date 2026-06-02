@@ -3,6 +3,7 @@ import pygame
 
 from settings import Settings
 from block import Block
+from enemy_block import EnemyBlock
 from bullet import Bullet
 
 class TargetPractice:
@@ -21,6 +22,9 @@ class TargetPractice:
     
     # Create an instance of the Block class.
     self.block = Block(self)
+    
+    # Create an instance of the EnemyBlock class.
+    self.enemy_block = EnemyBlock(self)
     
     # Group that holds the bullets.
     self.bullets = pygame.sprite.Group()
@@ -85,6 +89,9 @@ class TargetPractice:
     
     # Redraw the block at its current location.
     self.block.draw_block()
+    
+    # Redraw the enemy block at its current location.
+    self.enemy_block.draw_enemy_block()
     
     # Make the most recently drawn screen visible.
     pygame.display.flip()

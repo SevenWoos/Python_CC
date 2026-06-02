@@ -21,4 +21,8 @@ class Settings:
     self.bullets_allowed = 3
     
     # Enemy Block Settings.
+    self.enemy_block_width = 50
+    self.enemy_block_height = 50
+    self.enemy_block_color = (220, 50, 50)
+    self.enemy_block_speed = 2.0
     

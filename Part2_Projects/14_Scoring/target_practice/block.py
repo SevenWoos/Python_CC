@@ -1,7 +1,5 @@
 import pygame
 
-from settings import Settings
-
 class Block:
   """A class to manage the user block."""
   
