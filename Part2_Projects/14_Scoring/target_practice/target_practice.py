@@ -82,6 +82,9 @@ class TargetPractice:
       
       # Create a new enemy block and add it to the enemy_block_group.
       self._create_enemy_block()
+      
+      # Hide the mouse cursor.
+      pygame.mouse.set_visible(False)
   
   def _check_keydown_events(self, event):
     """Respond to keypresses."""
@@ -161,6 +164,7 @@ class TargetPractice:
     # Draw the play button if the game is inactive.
     if not self.game_active:
       self.play_button.draw_button()
+      pygame.mouse.set_visible(True)
     
     # Make the most recently drawn screen visible.
     pygame.display.flip()
