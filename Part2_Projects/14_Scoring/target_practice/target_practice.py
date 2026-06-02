@@ -14,6 +14,9 @@ class TargetPractice:
     """Initialize the game, and create game resources."""
     pygame.init()
     
+    # Start Target Practice in an inactive state.
+    self.game_active = False
+    
     self.clock = pygame.time.Clock()
     self.settings = Settings()
     
@@ -38,9 +41,10 @@ class TargetPractice:
     """Start the main loop for the game."""
     while True:
       self._check_events()
-      self.block.update()
-      self._update_enemy_block()
-      self._update_bullets()
+      if self.game_active:
+        self.block.update()
+        self._update_enemy_block()
+        self._update_bullets()
       self._update_screen()
       self.clock.tick(60)
       
