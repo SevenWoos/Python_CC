@@ -4,6 +4,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from button import Button
 from block import Block
 from enemy_block import EnemyBlock
 from bullet import Bullet
@@ -16,7 +17,7 @@ class TargetPractice:
     pygame.init()
     
     # Start Target Practice in an inactive state.
-    self.game_active = True
+    self.game_active = False
     
     self.clock = pygame.time.Clock()
     self.settings = Settings()
@@ -24,6 +25,9 @@ class TargetPractice:
     self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
     self.screen_rect = self.screen.get_rect()
     pygame.display.set_caption("Target Practice")
+    
+    # Make the Play button.
+    self.play_button = Button(self, "Play")
     
     # Create an instance to store game statistics.
     self.stats = GameStats(self)
@@ -132,9 +136,13 @@ class TargetPractice:
     # Redraw the block at its current location.
     self.block.draw_block()
     
-    # Redraw the enemy block at its current location ONLy if it is still in the enemy_block_group.
+    # Redraw the enemy block at its current location ONLY if it is still in the enemy_block_group.
     if self.enemy_block in self.enemy_block_group:
       self.enemy_block.draw_enemy_block()
+      
+    # Draw the play button if the game is inactive.
+    if not self.game_active:
+      self.play_button.draw_button()
     
     # Make the most recently drawn screen visible.
     pygame.display.flip()
