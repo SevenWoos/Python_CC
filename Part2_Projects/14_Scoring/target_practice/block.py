@@ -35,3 +35,7 @@ class Block:
     """Draw the block to the screen."""
     pygame.draw.rect(self.screen, self.color, self.rect)
   
+  def center_block(self):
+    """Center the block on the screen."""
+    self.rect.midleft = self.screen_rect.midleft
+    self.y = float(self.rect.y)

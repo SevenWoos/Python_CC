@@ -87,6 +87,9 @@ class TargetPractice:
     # Create a new enemy block and add it to the enemy_block_group.
     self._create_enemy_block()
     
+    # Center the block.
+    self.block.center_block()
+    
     # Hide the mouse cursor.
     pygame.mouse.set_visible(False)
   
@@ -100,6 +103,8 @@ class TargetPractice:
       self.block.moving_down = True
     elif event.key == pygame.K_SPACE:
       self._fire_bullet()
+    elif event.key == pygame.K_p:
+      self._start_game()
   
   def _check_keyup_events(self, event):
     if event.key == pygame.K_UP:
