@@ -4,6 +4,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from scoreboard import Scoreboard
 from button import Button
 from ship import Ship
 from bullet import Bullet
@@ -29,8 +30,9 @@ class AlienInvasion:
     # Make the Play button.
     self.play_button = Button(self, "Play")
     
-    # Create an instance to store game statistics.
+    # Create an instance to store game statistics, and create a scoreboard.    
     self.stats = GameStats(self)
+    self.sb = Scoreboard(self)
     
     # Screen must be defined BEFORE ship, since we're accessing it.
     self.ship = Ship(self)
@@ -233,6 +235,9 @@ class AlienInvasion:
       
     # To make the aliens appear, we need to call draw() for the group of aliens. This method automatically draws each alien in the group at the position specified by its rect attribute.
     self.aliens.draw(self.screen)
+    
+    # Draw the score information.
+    self.sb.show_score()
     
     # Draw the play button if the game is inactive.
     if not self.game_active:
