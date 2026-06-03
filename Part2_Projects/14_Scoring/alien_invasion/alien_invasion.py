@@ -74,6 +74,7 @@ class AlienInvasion:
     if button_clicked and not self.game_active:
       # Reset the game settings.
       self.settings.initialize_dynamic_settings()
+      # self.sb.prep_score()
       self._start_game()
       
   def _start_game(self):
@@ -89,6 +90,9 @@ class AlienInvasion:
     # Create a new fleet and center the ship.
     self._create_fleet()
     self.ship.center_ship()
+    
+    # Reset the scoreboard
+    self.sb.prep_score()
     
     # Hide the mosue cursor
     pygame.mouse.set_visible(False)
