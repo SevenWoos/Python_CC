@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 class GameStats:
   """Track statistics for Alien Invasion.
   """
@@ -6,8 +9,13 @@ class GameStats:
     """Initialize statistics."""
     self.settings = ai_game.settings
     self.reset_stats()
-    # High score should never be reset.
-    self.high_score = 0
+    
+    # Load high score from file.
+    path = Path('high_score.json')
+    if path.exists():
+      self.high_score = json.loads(path.read_text())
+    else:
+      self.high_score = 0
     self.level = 1
     
   def reset_stats(self):

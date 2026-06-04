@@ -1,6 +1,8 @@
 import sys
 from time import sleep
 import pygame
+import json
+from pathlib import Path
 
 from settings import Settings
 from game_stats import GameStats
@@ -106,6 +108,8 @@ class AlienInvasion:
   def _check_events_keydown(self, event):
     """Respond to keypresses."""
     if event.key == pygame.K_q:
+      path = Path('high_score.json')
+      path.write_text(json.dumps(self.stats.high_score))
       sys.exit()
     elif event.key == pygame.K_LEFT:
       self.ship.moving_left = True
