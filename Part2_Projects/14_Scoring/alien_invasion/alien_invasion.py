@@ -74,8 +74,11 @@ class AlienInvasion:
     if button_clicked and not self.game_active:
       # Reset the game settings.
       self.settings.initialize_dynamic_settings()
+      # Display correct level
+      self.sb.prep_level()
       # self.sb.prep_score()
       self._start_game()
+      
       
   def _start_game(self):
     """Start a new game."""
@@ -93,6 +96,9 @@ class AlienInvasion:
     
     # Reset the scoreboard
     self.sb.prep_score()
+    
+    # Display correct level
+    self.sb.prep_level()
     
     # Hide the mosue cursor
     pygame.mouse.set_visible(False)
@@ -157,6 +163,10 @@ class AlienInvasion:
       self._create_fleet()
       # Increase the speed when the fleet is destroyed.
       self.settings.increase_speed()
+      
+      # Increase level.
+      self.stats.level += 1
+      self.sb.prep_level()
         
   def _create_alien(self, x_position, y_position):
     """Create an alien and place it in the row."""
