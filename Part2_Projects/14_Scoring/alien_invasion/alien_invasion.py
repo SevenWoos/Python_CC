@@ -102,7 +102,7 @@ class AlienInvasion:
     # Display correct level
     self.sb.prep_level()
     
-    # Hide the mosue cursor
+    # Hide the mouse cursor
     pygame.mouse.set_visible(False)
   
   def _check_events_keydown(self, event):
@@ -163,14 +163,18 @@ class AlienInvasion:
     # Respawn new fleet when one is completely destroyed.
     if not self.aliens:
       # Destroy existing bullets and create new fleet.
-      self.bullets.empty()
-      self._create_fleet()
-      # Increase the speed when the fleet is destroyed.
-      self.settings.increase_speed()
+      self._start_new_level()
       
-      # Increase level.
-      self.stats.level += 1
-      self.sb.prep_level()
+  def _start_new_level(self):
+    # Destroy existing bullets and create new fleet.
+    self.bullets.empty()
+    self._create_fleet()
+    # Increase the speed when the fleet is destroyed.
+    self.settings.increase_speed()
+    
+    # Increase level.
+    self.stats.level += 1
+    self.sb.prep_level()
         
   def _create_alien(self, x_position, y_position):
     """Create an alien and place it in the row."""
