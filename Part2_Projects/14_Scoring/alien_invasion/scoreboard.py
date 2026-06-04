@@ -23,7 +23,7 @@ class Scoreboard:
     # Passing -1, will round number to nearest 10, 100, 1000, etc.
     rounded_score = round(self.stats.score, -1)
     # :, tells Python to insert commas when appropriate for really big numbers.
-    score_str = f"{self.stats.score:,}"
+    score_str = f"{rounded_score:,}"
     self.score_image = self.font.render(score_str, True, self.text_color, self.settings.bg_color)
   
     # Display the score at top right of the screen.
