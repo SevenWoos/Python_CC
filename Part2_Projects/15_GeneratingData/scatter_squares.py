@@ -25,4 +25,8 @@ ax.tick_params(labelsize=14)
 # Set the range for each axis.
 ax.axis([0, 1100, 0, 1_100_000])
 
-plt.show()
+# plt.show()
+
+# We can save the plot to a file instead of just plotting it.
+# bbox_inches trims extra whitespace around the plot.
+plt.savefig('squares_plot.png', bbox_inches='tight')
